@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class StorageImpl<K, V> implements Storage {
+public final class StorageImpl<K, V> implements Storage<K, V> {
     private static final int CAPACITY = 10;
 
     private final Object[] keys = new Object[CAPACITY];
@@ -10,7 +10,7 @@ public final class StorageImpl<K, V> implements Storage {
     private int size = 0;
 
     @Override
-    public void put(Object key, Object value) {
+    public void put(K key, V value) {
         for (int i = 0; i < size; i++) {
             if (Objects.equals(keys[i], key)) {
                 values[i] = value;
@@ -26,7 +26,7 @@ public final class StorageImpl<K, V> implements Storage {
     }
 
     @Override
-    public Object get(Object key) {
+    public V get(K key) {
         for (int i = 0; i < size; i++) {
             if (Objects.equals(keys[i], key)) {
                 V val = (V) values[i];
